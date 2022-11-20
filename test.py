@@ -3,5 +3,8 @@ from DescriptionGenerator import DescriptionGenerator as dg
 
 user = su()
 client = user.authenticate()
-generator = dg(client)
-print(generator.get_playlists())
+gen = dg(client)
+
+x,ids = gen.get_playlists()
+
+print(gen.get_songs(ids[0]))
