@@ -9,13 +9,13 @@ class DescriptionGenerator:
         #get all user playlists
         playlists = self.sp.current_user_playlists(limit=50)['items']
         #loop through every playlist
-        playlist_names = []
-        playlist_ids = []
+        p_data = {}
         for playlist in playlists:
-            playlist_names.append(playlist['name'])
-            playlist_ids.append(playlist['uri'])
+            name = playlist['name']
+            id = playlist['uri']
+            p_data[name] = id
 
-        return playlist_names,playlist_ids
+        return p_data
     
 
     def get_songs(self,playlist_id):
@@ -23,13 +23,46 @@ class DescriptionGenerator:
         songs = self.sp.playlist_items(playlist_id)['items']
 
         #compile all the song names
-        song_names = []
-        song_ids = []
+        s_data = {}
         for song in songs:
             track = song['track']
             name = track['name']
             id = track['uri']
-            song_names.append(name)
-            song_ids.append(id)
+            s_data[name] = id
 
-        return song_names,song_ids
+        return s_data
+    
+    def average_song_features(self,songs):
+        #compile list of song ids and get audio features for all songs in playlist
+        ids = [songs[key] for key in songs]
+        song_data = self.sp.audio_features(ids)
+        print(song_data)
+        #avergae all values
+        avg = {'danceability': 0,
+               'energy': 0,
+               'key': 0,
+               'loudness': 0,
+               'mode': 0,
+               'speechiness': 0,
+               'acousticness': 0,
+               'instrumentalness': 0,
+               'liveness': 0,
+               'valence': 0,
+               'tempo': 0
+        }
+        #add all values
+        for data in song_data:
+            for key, val in avg.items():
+                #add to average dicitonary
+                avg[key] += data[key]
+        #divice by n
+        for key,val in avg.items():
+            avg[key] = val/len(song_data)
+        
+        return avg
+        
+
+        
+
+
+

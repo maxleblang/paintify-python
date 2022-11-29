@@ -5,6 +5,6 @@ user = su()
 client = user.authenticate()
 gen = dg(client)
 
-x,ids = gen.get_playlists()
-
-print(gen.get_songs(ids[0]))
+playlists = gen.get_playlists()
+songs = gen.get_songs(playlists['2140 test'])
+print(gen.average_song_features(songs))
