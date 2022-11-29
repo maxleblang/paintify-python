@@ -11,7 +11,7 @@ class SpotifyUser:
     
     """Function to authenticate a user with the Spotify API using OAuth 2.0
     :param: .env file containing client environment variables
-    :returns: an authenticated client object 
+    :returns: an authenticated client object
     """
     def authenticate(self):
         #load in environment vairables for API authentication

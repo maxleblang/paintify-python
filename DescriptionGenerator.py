@@ -21,7 +21,6 @@ class DescriptionGenerator:
     def get_songs(self,playlist_id):
         #get the JSON data for all songs in the playlist
         songs = self.sp.playlist_items(playlist_id)['items']
-
         #compile all the song names
         s_data = {}
         for song in songs:
@@ -36,7 +35,6 @@ class DescriptionGenerator:
         #compile list of song ids and get audio features for all songs in playlist
         ids = [songs[key] for key in songs]
         song_data = self.sp.audio_features(ids)
-        print(song_data)
         #avergae all values
         avg = {'danceability': 0,
                'energy': 0,
