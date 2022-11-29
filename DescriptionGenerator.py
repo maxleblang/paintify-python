@@ -1,4 +1,3 @@
-import json
 class DescriptionGenerator:
     """Initialize a DesciptionGenerator object"""
     def __init__(self,client) -> None:
@@ -17,7 +16,6 @@ class DescriptionGenerator:
 
         return p_data
     
-
     def get_songs(self,playlist_id):
         #get the JSON data for all songs in the playlist
         songs = self.sp.playlist_items(playlist_id)['items']
@@ -58,9 +56,3 @@ class DescriptionGenerator:
             avg[key] = val/len(song_data)
         
         return avg
-        
-
-        
-
-
-

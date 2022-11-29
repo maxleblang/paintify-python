@@ -2,8 +2,6 @@ import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 from dotenv import load_dotenv
 
-
-
 class SpotifyUser:
     """Initialize a SpotifyUser object"""
     def __init__(self) -> None:
