@@ -17,4 +17,5 @@ class SpotifyUser:
         # Shows a user's playlists
         scope = 'playlist-read-private'
         client = spotipy.Spotify(auth_manager=SpotifyOAuth(scope=scope))
+        print("Spotify authenticated")
         return client
