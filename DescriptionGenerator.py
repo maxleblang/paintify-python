@@ -4,18 +4,6 @@ class DescriptionGenerator:
         self.sp = client
         pass
     
-    def get_playlists(self):
-        #get all user playlists
-        playlists = self.sp.current_user_playlists(limit=50)['items']
-        #loop through every playlist
-        p_data = {}
-        for playlist in playlists:
-            name = playlist['name']
-            id = playlist['uri']
-            p_data[name] = id
-
-        return p_data
-    
     def get_songs(self,playlist_id):
         #get the JSON data for all songs in the playlist
         songs = self.sp.playlist_items(playlist_id)['items']
@@ -46,13 +34,17 @@ class DescriptionGenerator:
                'valence': 0,
                'tempo': 0
         }
+        #average all values
         #add all values
         for data in song_data:
             for key, val in avg.items():
                 #add to average dicitonary
                 avg[key] += data[key]
-        #divice by n
+        #divide by n
         for key,val in avg.items():
             avg[key] = val/len(song_data)
         
         return avg
+    
+    def generate_description(self,playlist_id):
+        return 'description'

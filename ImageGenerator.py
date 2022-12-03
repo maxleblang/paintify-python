@@ -1,6 +1,7 @@
 import openai
 import os
 from dotenv import load_dotenv
+from CoverImage import CoverImage
 
 class ImageGenerator:
 
@@ -12,10 +13,13 @@ class ImageGenerator:
         print("OpenAI authenticated")
     
     def generate_image(self,description: str):
+        #API call to generate image
         response = openai.Image.create(
             prompt=description,
             n=1,
             size="256x256"
         )
+        #get url of generated image
         image_url = response['data'][0]['url']
-        return image_url
+        #create Image object from url
+        return CoverImage(image_url,'test')
