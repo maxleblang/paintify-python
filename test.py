@@ -5,7 +5,7 @@ from ImageGenerator import ImageGenerator as ig
 user = su()
 sp = user.authenticate()
 playlists = user.get_playlists()
-name = 'Overtures and symphonies'
+name = 'Summer vibes'
 p_id = playlists[name]
 des_gen = dg(sp)
 description = des_gen.generate_description(p_id,name)

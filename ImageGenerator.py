@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from CoverImage import CoverImage
 
 class ImageGenerator:
-
+    """Initialize a ImageGenerator object and authenticate the OpenAI API"""
     def __init__(self) -> None:
         #authenticate openai account when initiated
         load_dotenv()
@@ -12,7 +12,11 @@ class ImageGenerator:
         #openai.Model.list()
         print("OpenAI authenticated")
     
-    def generate_image(self,description: str):
+    """Function that generates an image using Dall-E 2
+    :param description: image description string
+    returns: a CoverImage object of the generated image
+    """
+    def generate_image(self,description):
         #API call to generate image
         response = openai.Image.create(
             prompt=description,

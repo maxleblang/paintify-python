@@ -3,7 +3,7 @@ import base64
 from PIL import Image
 
 class CoverImage:
-
+    """Initialize a SpotifyUser object, save the image as a png and jpg from the openai url, and encode it into a Base64 string"""
     def __init__(self,image_url,filename) -> None:
         #pull image from url
         #request image url
@@ -23,5 +23,3 @@ class CoverImage:
             #generate Base64 string
             with open(f'jpgs/{filename}.jpg', 'rb') as image:
                 self.b64 = base64.b64encode(image.read()).decode("utf-8")
-            
-
