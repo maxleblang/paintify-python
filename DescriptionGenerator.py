@@ -1,4 +1,11 @@
+import random
 class DescriptionGenerator:
+    #creating static variables for the description generation
+    IMAGE_STYLE = ['Vincent van gogh style painting','trippy painting','lomography','neon lights','digital art']
+    DANCE_ADJ = ['relaxed','trippy','groovy','hype']
+    ENERGY_ADJ = ['peaceful','chill','happy','Exciting']
+
+
     """Initialize a DesciptionGenerator object"""
     def __init__(self,client) -> None:
         self.sp = client
@@ -46,5 +53,24 @@ class DescriptionGenerator:
         
         return avg
     
-    def generate_description(self,playlist_id):
-        return 'description'
+    def choose_adj(self,lower_bound,upper_bound,score,adj_list):
+        score_range = upper_bound-lower_bound
+        interval = score_range/len(adj_list)
+        for i in range(0,len(adj_list)):
+            lower = lower_bound + (interval*i)
+            upper = lower_bound + (interval*(i+1))
+            if score >= lower and score <= upper:
+                return adj_list[i]
+
+
+
+    
+    def generate_description(self,playlist_id,song_name):
+        songs = self.get_songs(playlist_id)
+        features = self.average_song_features(songs)
+        style = random.choice(self.IMAGE_STYLE)
+        dance_adj = self.choose_adj(0.1,0.8,features['danceability'],self.DANCE_ADJ)
+        energy_adj = self.choose_adj(0.1,0.9,features['energy'],self.ENERGY_ADJ)
+        description = f'A {dance_adj}, {energy_adj} {style} of {song_name}'
+        
+        return description

@@ -19,6 +19,7 @@ class SpotifyUser:
         client = spotipy.Spotify(auth_manager=SpotifyOAuth(scope=scope))
         print("Spotify authenticated")
         self.sp = client
+        return client
 
     def get_playlists(self):
         #get all user playlists

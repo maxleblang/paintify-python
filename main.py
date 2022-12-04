@@ -4,10 +4,10 @@ from ImageGenerator import ImageGenerator as ig
 
 #generate array of playlists
 user = su()
-user.authenticate()
+client_auth = user.authenticate()
 playlists = user.get_playlists()
 #create generators
-desc_gen = dg()
+desc_gen = dg(client_auth)
 img_gen = ig()
 #loop through playlists
 for playlist,playlist_id in playlists:
