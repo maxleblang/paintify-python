@@ -2,6 +2,8 @@ import openai
 import os
 from dotenv import load_dotenv
 from CoverImage import CoverImage
+import random
+import string
 
 class ImageGenerator:
     """Initialize a ImageGenerator object and authenticate the OpenAI API"""
@@ -25,5 +27,7 @@ class ImageGenerator:
         )
         #get url of generated image
         image_url = response['data'][0]['url']
+        #generate random filename to save image under
+        filename = ''.join(random.choices(string.ascii_lowercase, k=5))
         #create Image object from url
-        return CoverImage(image_url,'test')
+        return CoverImage(image_url,filename)
