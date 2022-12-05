@@ -1,7 +1,7 @@
 import random
 class DescriptionGenerator:
     #creating static characteristic variables
-    IMAGE_STYLE = ['Vincent van gogh style painting','trippy painting','lomography','neon lights','digital art']
+    IMAGE_STYLE = ['trippy painting','lomography','neon lights','digital art','50mm lense','album cover']
     DANCE_ADJ = ['relaxed','trippy','groovy','hype']
     ENERGY_ADJ = ['peaceful','chill','happy','Exciting']
 

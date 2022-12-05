@@ -11,7 +11,7 @@ desc_gen = dg(client_auth)
 img_gen = ig()
 #loop through playlists
 for playlist_name,playlist_id in playlists.items():
-    if playlist_name == 'Boiler room': #if statement just for controlled testing
+    if playlist_name == 'Songs I would play if I were in a band': #if statement just for controlled testing
         #generate description
         description = desc_gen.generate_description(playlist_id,playlist_name)
         print('Generating image with description:',description)
